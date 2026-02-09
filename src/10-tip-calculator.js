@@ -31,4 +31,44 @@
  */
 export function calculateTip(billAmount, serviceRating) {
   // Your code here
+
+  let tipPercentage = 0
+
+  if (billAmount === 0 || billAmount < 0) {
+    return null
+  }
+
+  if (
+    serviceRating !== 1 &&
+    serviceRating !== 2 &&
+    serviceRating !== 3 &&
+    serviceRating !== 4 &&
+    serviceRating !== 5
+  ) {
+    return null
+  }
+
+  if (serviceRating === 1) {
+    tipPercentage = 5
+  } else if (serviceRating === 2) {
+    tipPercentage = 10
+  } else if (serviceRating === 3) {
+    tipPercentage = 15
+  } else if (serviceRating === 4) {
+    tipPercentage = 20
+  } else if (serviceRating === 5) {
+    tipPercentage = 25
+  }
+
+  let tipAmount = (tipPercentage / 100) * billAmount
+  let totalAmount = billAmount + tipAmount
+
+  tipAmount = Math.round(tipAmount * 100) / 100
+  totalAmount = Math.round(totalAmount * 100) / 100
+
+  return {
+    tipPercentage: tipPercentage,
+    tipAmount: tipAmount,
+    totalAmount: totalAmount,
+  }
 }
